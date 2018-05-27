@@ -1,8 +1,8 @@
 
 export BASE=data/dev
-export ref=$BASE/reference.txt
-export source=$BASE/source.txt
 annotation_task() {
+	ref=$BASE/reference.txt
+	source=$BASE/source.txt
 	exp=$1
 	AN=$2
 	mkdir -p $AN
@@ -19,8 +19,8 @@ annotation_task() {
 	rm -f anotation.*
 	#quickjudge anotation --refs=ref,source $judge_exp --shuffle --portion-size=100
 	python3 ../quickjudge.py --refs=source,ref $judge_exp -n 100
-	cp anotation.ano anotation-dm.anot
-	cp anotation.ano anotation-ob.anot
+	cp anotation.anot anotation-dm.anot
+	cp anotation.anot anotation-ob.anot
 	ln -rs anotation.coresp anotation-dm.coresp
 	ln -rs anotation.coresp anotation-ob.coresp
 }
@@ -37,4 +37,9 @@ AN=anotate-baseline1M_vs_taskid
 #annotation_task "$exp" $AN
 
 
+export BASE=data/test
+exp="baseline-1M
+ner5_enrich-1M"
+AN=anotate-ner5enrich_vs_baseline
+annotation_task "$exp" $AN
 
