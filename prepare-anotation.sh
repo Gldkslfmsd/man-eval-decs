@@ -41,5 +41,12 @@ export BASE=data/test
 exp="baseline-1M
 ner5_enrich-1M"
 AN=anotate-ner5enrich_vs_baseline
+#annotation_task "$exp" $AN
+
+
+export BASE=data/test
+exp="baseline-1M
+ner58_gold-1M"
+AN=anotate-ner58gold_vs_baseline
 annotation_task "$exp" $AN
 

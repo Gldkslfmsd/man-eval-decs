@@ -35,6 +35,10 @@ anotate-ner5enrich_vs_baseline/
 	- 1M
 	- DM 100% done
 	
+anotate-ner58gold_vs_baseline/
+	- test
+	- 1M
+	- DM 100% done
 
 TODO
 
