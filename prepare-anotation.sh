@@ -48,5 +48,25 @@ export BASE=data/test
 exp="baseline-1M
 ner58_gold-1M"
 AN=anotate-ner58gold_vs_baseline
-annotation_task "$exp" $AN
+#annotation_task "$exp" $AN
+
+
+
+
+AN=anotate-NE-ner58gold_vs_baseline
+mkdir -p $AN
+source=ner-gold-test/dev.nertest.de.tok
+ref=ner-gold-test/dev.nertest.other
+cp $source $AN/source
+cp $ref $AN/ref
+exp="baseline-1M
+ner58_gold-1M"
+cp ner-gold-test/dev.ner.translate_decs_baseline $AN/baseline-1M
+cp ner-gold-test/dev.ner.translate_decs_ner $AN/ner58_gold-1M
+cd $AN
+python3 ../quickjudge.py --refs=source,ref  $exp -n 100
+cp anotation.anot anotation-dm.anot
+cp anotation.anot anotation-ob.anot
+ln -rs anotation.coresp anotation-dm.coresp
+ln -rs anotation.coresp anotation-ob.coresp
 
